@@ -16,11 +16,14 @@ const std::array<std::string, 3UL> kEndings = {
     "eats UB for breakfast", "finds errors quicker than the compiler",
     "is not afraid of C++ error messages"};
 
-int get_adjective_index(int size_of_adjectives, int name_length) {
-  return name_length % size_of_adjectives;
+int get_adjective_index(const std::vector<std::string>& adjectives,
+                        const std::string& name) {
+  return name.length() % adjectives.size();
 }
 
-int get_ending_index(int name_length) { return name_length % kEndings.size(); }
+int get_ending_index(const std::string& name) {
+  return name.length() % kEndings.size();
+}
 
 int main() {
   std::string name{}, season{};
@@ -49,12 +52,12 @@ int main() {
   size_of_endings = kEndings.size();
 
   std::string final_adjective =
-      adjectives.at(get_adjective_index(size_of_adjectives, name.length()));
+      adjectives.at(get_adjective_index(adjectives, name));
 
   std::string final_noun = kSeasonNounMap.at(season);
+  std::string final_ending = kEndings.at(get_ending_index(name));
 
-  std::string final_ending = kEndings.at(get_ending_index(name.length()));
-
+  cout << "Here is your description:" << endl;
   cout << name << ", "
        << "the " << final_adjective << " " << final_noun << " that "
        << final_ending << endl;
