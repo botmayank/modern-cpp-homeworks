@@ -57,7 +57,7 @@ int main() {
   std::string final_noun = kSeasonNounMap.at(season);
   std::string final_ending = kEndings.at(get_ending_index(name));
 
-  cout << "Here is your description:" << endl;
+  cout << "\nHere is your description:" << endl;
   cout << name << ", "
        << "the " << final_adjective << " " << final_noun << " that "
        << final_ending << endl;
